@@ -26,18 +26,14 @@ func findLoop(_ node: Node) -> Bool {
   var result: Bool!
   
   while true {
+    hare = hare!.next
+    
     guard hare != nil && tortoise != nil else {
       result = false
       break
     }
     
-    hare = hare!.next
     tortoise = tortoise!.next?.next
-    
-    if tortoise == nil {
-      result = false
-      break
-    }
     
     if hare == tortoise {
       result = true
@@ -77,7 +73,7 @@ private func isNodeContainsCycle(_ node: Node?, previousNodes: inout [Node]) -> 
 // Create Linked List
 // Returns head node
 func createLinkedList() -> Node {
-  let range: Int = 10
+  let range: Int = 100
   var linkedList = [Node]()
   
   print("Linked List")
