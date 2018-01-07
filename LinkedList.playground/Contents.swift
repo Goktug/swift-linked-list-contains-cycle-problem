@@ -34,6 +34,11 @@ func findLoop(_ node: Node) -> Bool {
     hare = hare!.next
     tortoise = tortoise!.next?.next
     
+    if tortoise == nil {
+      result = false
+      break
+    }
+    
     if hare == tortoise {
       result = true
       break
@@ -94,6 +99,7 @@ func createLinkedList() -> Node {
   
   print(middleNode.value, terminator: "")
   print("\n-----------")
+ 
   
   return linkedList.last as! Node
 }
