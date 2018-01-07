@@ -26,20 +26,13 @@ func findLoop(_ node: Node) -> Bool {
   var result: Bool!
   
   while true {
-    if hare == nil {
+    guard hare != nil && tortoise != nil else {
       result = false
       break
     }
     
-    hare = hare?.next
-    
-    if hare == nil {
-      result = false
-      break
-    }
-    
-    hare = hare?.next
-    tortoise = tortoise?.next
+    hare = hare!.next
+    tortoise = tortoise!.next?.next
     
     if hare == tortoise {
       result = true
