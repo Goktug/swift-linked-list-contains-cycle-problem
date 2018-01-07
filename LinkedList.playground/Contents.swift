@@ -19,6 +19,37 @@ extension Node: Equatable {
   }
 }
 
+// Floyd's cycle-finding algorithm
+func findLoop(_ node: Node) -> Bool {
+  var tortoise: Node? = node
+  var hare: Node? = node
+  var result: Bool!
+  
+  while true {
+    if hare == nil {
+      result = false
+      break
+    }
+    
+    hare = hare?.next
+    
+    if hare == nil {
+      result = false
+      break
+    }
+    
+    hare = hare?.next
+    tortoise = tortoise?.next
+    
+    if hare == tortoise {
+      result = true
+      break
+    }
+  }
+  
+  return result
+}
+
 func isContainsCycle(_ node: Node) -> Bool {
   var previousNodes = [Node]()
   
@@ -76,4 +107,4 @@ func createLinkedList() -> Node {
 
 let headNode: Node = createLinkedList()
 
-print("Contains Cycle: \(isContainsCycle(headNode))")
+print("Contains Cycle: \(findLoop(headNode))")
